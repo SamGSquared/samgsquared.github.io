@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>Hacking A Digital Picture Frame for Fun and Doom // /dev/log</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.142.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Sam Grossman Gerlach" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="/css/main.min.5b1fcc8902588589c4767187402a3c29f8b8d7a6fdef6d9f8f77045bb0d14fee.css" />
+    
+
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Hacking A Digital Picture Frame for Fun and Doom">
+  <meta name="twitter:description" content="Preface: I first started this project before I had the idea for this blog. Many of the photos were taken after the bulk of the project was complete. As a result, you may notice some battle scars on the board that don’t line up chronologically.
+A while back I recieved one of these Pix-Star digital picture frames as a gift.
+I immediately had the idea that it would be a fun hardware hacking project. I thought it would be hilarious to try and root the device and install Doom on it.">
+
+    <meta property="og:url" content="//localhost:1313/post/doom-picture-frame/">
+  <meta property="og:site_name" content="/dev/log">
+  <meta property="og:title" content="Hacking A Digital Picture Frame for Fun and Doom">
+  <meta property="og:description" content="Preface: I first started this project before I had the idea for this blog. Many of the photos were taken after the bulk of the project was complete. As a result, you may notice some battle scars on the board that don’t line up chronologically.
+A while back I recieved one of these Pix-Star digital picture frames as a gift.
+I immediately had the idea that it would be a fun hardware hacking project. I thought it would be hilarious to try and root the device and install Doom on it.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-06-06T00:14:27-04:00">
+    <meta property="article:modified_time" content="2025-06-06T00:14:27-04:00">
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="/avatar.png" alt="Sam Grossman Gerlach" /></a>
+      <span class="app-header-title">/dev/log</span>
+      <p>A collection of various things I&#39;ve thought about, built or done</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/samgsquared" target="_blank" rel="noreferrer noopener me">
+            <svg class="icon icon-brand-github" viewBox="0 0 24 24" fill="currentColor"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+        
+          <a href="mailto:sam@grossmangerlach.com" target="_blank" rel="noreferrer noopener me">
+            <svg class="icon icon-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>mail</title><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </a>
+        
+          <a href="/index.xml" target="_blank" rel="noreferrer noopener me">
+            <svg class="icon icon-brand-rss" viewBox="0 0 24 24" fill="currentColor"><title>RSS</title><path d="M19.199 24C19.199 13.467 10.533 4.8 0 4.8V0c13.165 0 24 10.835 24 24h-4.801zM3.291 17.415c1.814 0 3.293 1.479 3.293 3.295 0 1.813-1.485 3.29-3.301 3.29C1.47 24 0 22.526 0 20.71s1.475-3.294 3.291-3.295zM15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727 0 15.909 7.184 15.909 15.91z"/></svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Hacking A Digital Picture Frame for Fun and Doom</h1>
+      <div class="post-meta">
+        <div>
+          <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          Jun 6, 2025
+        </div>
+        <div>
+          <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          8 min read
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p><em>Preface: I first started this project before I had the idea for this blog. Many of the photos were taken after the bulk of the project was complete. As a result, you may notice some battle scars on the board that don&rsquo;t line up chronologically.</em></p>
+<p>A while back I recieved one of these Pix-Star digital picture frames as a gift.</p>
+<p><img src="/doom-picture-frame-images/frame.png" alt="Picture of the frame"></p>
+<p>I immediately had the idea that it would be a fun hardware hacking project. I thought it would be hilarious to try and root the device and install Doom on it.</p>
+<p>I stripped the picture frame down to the motherboard and immediately noticed a couple of things.</p>
+<p><img src="/doom-picture-frame-images/mobo_front.jpg" alt="Motherboard Front">
+<img src="/doom-picture-frame-images/mobo_rear.jpg" alt="Motherboard Front"></p>
+<p>The first thing that jumped out at me was the niceley labeled UART pins. This was an excellent start! I also took note of the SoC, an Allwinner A33. I didn&rsquo;t recognize the flash chip but a web search of the part number showed me that it was an 8GB Samsung eMMC. Because it&rsquo;s BGA, I decided that a chip-off flash dump was off the table unless as an absolute last resort (Reballing eMMC chips is not my idea of fun). I also noted the 4GB Samsung DRAM. I grabbed the datasheets for the chips I recognized and proceeded to wire up my USB Serial adapter.</p>
+<p><img src="/doom-picture-frame-images/uart.jpg" alt="Picture of UART pins"></p>
+<p>I powered the device on and waited for it to boot. I was happy to see my serial console fill with boot logs! Eventually I was dropped into a login prompt.</p>
+<p><img src="/doom-picture-frame-images/prompt.png" alt="Login prompt"></p>
+<p>I tried some obvious default credentials (sometimes you just get lucky) but had no luck. So I rebooted the system and tried to see if I could interrupt the boot process with a keypress to get a debug menu. I found that doing so led me into a U-Boot shell. U-Boot is an open source bootloader for embedded systems. Because it&rsquo;s so small and configurable, it&rsquo;s pretty ubiquitous. Oftentimes this shell is disabled unless a fault occurs (no bootable media detected for example) so this was another great step towards getting root.</p>
+<p>Because U-Boot is so configurable, I wanted to establish which commands were included in this build. I ran the <code>help</code> command to get a list.</p>
+<p><img src="/doom-picture-frame-images/commands.png" alt="Lots of help command output"></p>
+<p>Wow that&rsquo;s a lot! I made a little bulleted list with ways I could use these commands to achieve my goals.</p>
+<ul>
+<li>The boot commands:
+<ul>
+<li>The ability to boot an image might let me load an environment where I could modify the filesystem or take a flash dump</li>
+<li>Boota suggests the system might be Android?</li>
+</ul>
+</li>
+<li>The MMC commands:
+<ul>
+<li>These commands are used to interract with the flash chip</li>
+<li>The ability to interract directly with the filesystem could be useful if I could overwrite /etc/passwd to allow passwordless login</li>
+<li>I could potentially take a flash dump</li>
+</ul>
+</li>
+<li>The <code>mw</code>, <code>nm</code>, <code>mm</code> and <code>md</code> functions:
+<ul>
+<li>These functions allow one to write to and read from memory</li>
+<li>I could use these functions to insert payloads into memory for execution with <code>go</code> (a command that runs standalone programs)</li>
+<li>I could use these functions to read files from memory that I&rsquo;ve previously read into memory using the MMC commands from earlier</li>
+</ul>
+</li>
+</ul>
+<h4 id="approach-1---flash-dump-using-md">Approach 1 - Flash dump using md</h4>
+<p>My first approach was to try and load the file into memory with the <code>mmc read</code> command, and then dump it using a series of <code>md</code> commands. There&rsquo;s an excellent python library for automating memory operations (among other things) using u-boot called <a href="https://github.com/tetrelsec/depthcharge">depthcharge</a>. It&rsquo;s a great tool to have in your arsenal if you&rsquo;re at all interested in hacking embedded systems. I set everything up and ran an <code>mmc read</code> command, unforuntately this is where my luck seemed to run out. The commands would run and report success but the memory would remain unmodified. I&rsquo;m still not really sure why this happened. But I figured out that the <code>sunxi_flash</code> command has similar functionality and actually works. So I started by loading the flash into memory and then setting up depthcharge script to dump that section of memory.</p>
+<p>Unfortunately these memory dumps are unbelievably slow. Dumping just the 512MB boot partition took roughly 48 hours. And when the dump finished I found that the output was extremely garbled and contained very little useful information. At this point I kind of got tunnel vision and spent <em>way</em> too much time trying to dump the flash using this method. I tried changing the location in memory that the partition reads into. I tried shortening the UART leads to avoid interference. I tried various depthcharge tweaks to use different methods for dumping the RAM. But I eventually gave up on this method and put the project away for a while.</p>
+<h4 id="approach-2---looking-for-direct-connections-to-the-emmc-chip">Approach 2 - Looking for direct connections to the eMMC chip</h4>
+<p>My friend gave me his old Analog Discovery 2. I thought I might be able to find points on the board that directly connect to the eMMC chip. I poked around and checked test points and exposed pads but didn&rsquo;t find anything that looked like eMMC. Around this time I got my hands on a binocular microscope, which let me solder to much smaller points than I could before. I got into the weeds a bit and started scraping solder mask off of vias and poking them with <a href="https://github.com/whid-injector/PIZZAbite">pizzabite</a> probes.</p>
+<p><img src="/doom-picture-frame-images/probes.png" alt="probes"></p>
+<p>I also tried soldering enamel wires directly</p>
+<p><img src="/doom-picture-frame-images/wire.png" alt="probes"></p>
+<p>There are quite a few vias on this board. After a while the tedium of this approach made me give up.</p>
+<h4 id="approach-3---sunxi-fel">Approach 3 - Sunxi FEL</h4>
+<p>Allwinner processors have a special mode called FEL which is used for programming and recovery. It works over USB. When messing around in u-boot, I found the <code>efex</code> command puts the device in FEL mode. This is great, but the device seems to have no USB port. There&rsquo;s the one usb host, but I determined that this is connected to the second USB line on the A33 and as such was not used for FEL. I tried probing around the board with the logic analyzer but USB doesn&rsquo;t produce a signal when no devices are attached, so I had little luck. I was looking at the datasheet for the A33 and I noticed that all the balls for USB are in the corner.</p>
+<p><img src="/doom-picture-frame-images/data.png" alt="A33 Pinout"></p>
+<p>The chip is also high enough that the solder balls are somewhat exposed</p>
+<p><img src="/doom-picture-frame-images/bga.png" alt="Solder Balls"></p>
+<p>I took the plastic off a test clip and slid the flat contact under the chip to touch the USB-DP0 pin. I hooked the dissasembled clip up to my multimeter and tested a bunch of points on the board. Eventually I got a beep on one of the unpopulated connectors on the end. I checked the other lines and found ground and VCC using my multimeter. I bought a pack of micro usb break out boards and ran some thin wire from each data line on the connector to the USB port. I connected the VCC and ground to larger pads elsewhere on the board so I could power the entire board from USB.</p>
+<p><img src="/doom-picture-frame-images/usb.jpg" alt="usb connector wiring"></p>
+<p>I connected everything to my laptop, put the board in FEL mode and&hellip;</p>
+<p><img src="/doom-picture-frame-images/fel.jpg" alt="fel mode screenshot"></p>
+<p>Success! I then compiled a new, more permissive U-Boot image with ext4 filesystem and SD card support. I booted this image using the sunxi-fel command line utility and then checked that everything worked using the UART console.</p>
+<p><img src="/doom-picture-frame-images/uboot.jpg" alt="image of succesful uboot"></p>
+<p>I then ran the <code>mmc list</code> command and was happy to see both the eMMC chip and a SD card I had inserted available. I ran the ext4ls command and after trying a few different partition numbers, got a file listing for the rootfs.</p>
+<p><img src="/doom-picture-frame-images/rootfs.png" alt="root file listing"></p>
+<p>Great stuff. I then used the <code>ext4load</code> command to load the <code>/etc/passwd</code> into memory. I then wrote the <code>passwd</code> file from memory to my sdcard using the <code>ext4write</code> command I powered off the system and transfered the sd card to my laptop. I modified the <code>passwd</code> file to allow passwordless login and then transfered the sd card back to the board. Finally, I reversed the process, using <code>ext4read</code> on the sd card and <code>ext4write</code> on the eMMC. I rebooted the system and attempted to log in to the root account with no password.</p>
+<p><img src="/doom-picture-frame-images/login.png" alt="Successful login"></p>
+<p>Success! I had achieved root on the picture frame.</p>
+<h4 id="building-a-new-firmware-image-and-running-doom">Building a new firmware image and running Doom</h4>
+<p>After aquiring root, the next step was to get Doom running. My original plan was to simply cross compile <a href="https://github.com/maximevince/fbDOOM">fbDOOM</a> for the orignal picture frame firmware and point it at the framebuffer. I ended up having trouble getting everything to work with the archaic build of linux they were using so I built a completely new system image. I built a kernel targeting the system and built a rootfs using buildroot. For the device tree, I mostly copied the tree for the Sinlinx Sin-A33 devboard which has extremely similar hardware to the picture frame&rsquo;s motherboard (I suspect the engineers used this devboard for prototyping). I made some slight changes to the node for the voltage regulator for the display (I was having issues with the display powering off). I ended up having to slightly modify the custom u-boot image to initialize the display as well. After booting into the system I tried booting a graphical environment and running chocolate-doom (a minimalist source port) and it worked pretty well, but I couldn&rsquo;t get input to work properly. In the end I compiled fbDOOM as originally planned, but used the buildroot compiler and targeted my new custom firmware. Everything worked great! I was able to hook up a USB keyboard to the usb host port and play through the first few levels.</p>
+<p><img src="/doom-picture-frame-images/doom.jpg" alt="Doom running on the frame"></p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

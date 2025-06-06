@@ -1,0 +1,24 @@
+baseURL = "sam.grossmangerlach.com"
+title = "/dev/log"
+theme = "hugo-theme-m10c"
+
+[pagination]
+  pagerSize = 8
+  
+[params]
+  author = "Sam Grossman Gerlach"
+  avatar="/avatar.png"
+  description = "A collection of various things I've thought about, built or done"
+  menu_item_separator = " - "
+  [[params.social]]
+    icon = "brand-github"
+    name = "Github"
+    url = "https://github.com/samgsquared"
+  [[params.social]]
+    icon = "mail"
+    name = "Email"
+    url = "mailto:sam@grossmangerlach.com"
+  [[params.social]]
+    icon = "brand-rss"
+    name = "RSS"
+    url = "/index.xml"

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on /dev/log</title>
+    <link>//localhost:1313/post/</link>
+    <description>Recent content in Posts on /dev/log</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 06 Jun 2025 00:14:27 -0400</lastBuildDate>
+    <atom:link href="//localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hacking A Digital Picture Frame for Fun and Doom</title>
+      <link>//localhost:1313/post/doom-picture-frame/</link>
+      <pubDate>Fri, 06 Jun 2025 00:14:27 -0400</pubDate>
+      <guid>//localhost:1313/post/doom-picture-frame/</guid>
+      <description>&lt;p&gt;&lt;em&gt;Preface: I first started this project before I had the idea for this blog. Many of the photos were taken after the bulk of the project was complete. As a result, you may notice some battle scars on the board that don&amp;rsquo;t line up chronologically.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;A while back I recieved one of these Pix-Star digital picture frames as a gift.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;//localhost:1313/doom-picture-frame-images/frame.png&#34; alt=&#34;Picture of the frame&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;I immediately had the idea that it would be a fun hardware hacking project. I thought it would be hilarious to try and root the device and install Doom on it.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
