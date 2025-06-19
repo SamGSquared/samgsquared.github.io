@@ -1,7 +1,7 @@
 +++
 date = '2025-06-06T00:14:27-04:00'
 draft = false
-title = 'Hacking A Digital Picture Frame for Fun and Doom'
+title = 'Hacking a Digital Picture Frame for Fun and Doom'
 +++
 *Preface: I first started this project before I had the idea for this blog. Many of the photos were taken after the bulk of the project was complete. As a result, you may notice some battle scars on the board that don't line up chronologically.*
 

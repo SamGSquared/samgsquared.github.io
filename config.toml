@@ -1,4 +1,4 @@
-baseURL = "sam.grossmangerlach.com"
+baseURL = "https://sam.grossmangerlach.com/"
 title = "/dev/log"
 theme = "hugo-theme-m10c"
 
