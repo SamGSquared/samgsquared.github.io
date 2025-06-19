@@ -36,8 +36,8 @@ Wow that's a lot! I made a little bulleted list with ways I could use these comm
     - The ability to boot an image might let me load an environment where I could modify the filesystem or take a flash dump
     - Boota suggests the system might be Android?
 - The MMC commands:
-    - These commands are used to interract with the flash chip
-    - The ability to interract directly with the filesystem could be useful if I could overwrite /etc/passwd to allow passwordless login
+    - These commands are used to interact with the flash chip
+    - The ability to interact directly with the filesystem could be useful if I could overwrite /etc/passwd to allow passwordless login
     - I could potentially take a flash dump
 - The `mw`, `nm`, `mm` and `md` functions:
     - These functions allow one to write to and read from memory
@@ -73,7 +73,7 @@ Unfortunately these memory dumps are unbelievably slow. Dumping just the 512MB b
  ![Solder Balls](/doom-picture-frame-images/bga.png)
 
 
-I took the plastic off a test clip and slid the flat contact under the chip to touch the USB-DP0 pin. I hooked the dissasembled clip up to my multimeter and tested a bunch of points on the board. Eventually I got a beep on one of the unpopulated connectors on the end. I checked the other lines and found ground and VCC using my multimeter. I bought a pack of micro usb break out boards and ran some thin wire from each data line on the connector to the USB port. I connected the VCC and ground to larger pads elsewhere on the board so I could power the entire board from USB.
+I took the plastic off a test clip and slid the flat contact under the chip to touch the USB-DP0 pin. I hooked the disassembled clip up to my multimeter and tested a bunch of points on the board. Eventually I got a beep on one of the unpopulated connectors on the end. I checked the other lines and found ground and VCC using my multimeter. I bought a pack of micro usb break out boards and ran some thin wire from each data line on the connector to the USB port. I connected the VCC and ground to larger pads elsewhere on the board so I could power the entire board from USB.
 
 ![usb connector wiring](/doom-picture-frame-images/usb.jpg)
 
@@ -89,7 +89,7 @@ I then ran the `mmc list` command and was happy to see both the eMMC chip and a 
 
 ![root file listing](/doom-picture-frame-images/rootfs.png)
 
-Great stuff. I then used the `ext4load` command to load the `/etc/passwd` into memory. I then wrote the `passwd` file from memory to my sdcard using the `ext4write` command I powered off the system and transfered the sd card to my laptop. I modified the `passwd` file to allow passwordless login and then transfered the sd card back to the board. Finally, I reversed the process, using `ext4read` on the sd card and `ext4write` on the eMMC. I rebooted the system and attempted to log in to the root account with no password.
+Great stuff. I then used the `ext4load` command to load the `/etc/passwd` into memory. I then wrote the `passwd` file from memory to my sdcard using the `ext4write` command. I powered off the system and transfered the sd card to my laptop. I modified the `passwd` file to allow passwordless login and then transfered the sd card back to the board. Finally, I reversed the process, using `ext4read` on the sd card and `ext4write` on the eMMC. I rebooted the system and attempted to log in to the root account with no password.
 
 ![Successful login](/doom-picture-frame-images/login.png)
 
@@ -97,7 +97,7 @@ Success! I had achieved root on the picture frame.
 
 #### Building a new firmware image and running Doom
 
-After aquiring root, the next step was to get Doom running. My original plan was to simply cross compile [fbDOOM](https://github.com/maximevince/fbDOOM) for the orignal picture frame firmware and point it at the framebuffer. I ended up having trouble getting everything to work with the archaic build of linux they were using so I built a completely new system image. I built a kernel targeting the system and built a rootfs using buildroot. For the device tree, I mostly copied the tree for the Sinlinx Sin-A33 devboard which has extremely similar hardware to the picture frame's motherboard (I suspect the engineers used this devboard for prototyping). I made some slight changes to the node for the voltage regulator for the display (I was having issues with the display powering off). I ended up having to slightly modify the custom u-boot image to initialize the display as well. After booting into the system I tried booting a graphical environment and running chocolate-doom (a minimalist source port) and it worked pretty well, but I couldn't get input to work properly. In the end I compiled fbDOOM as originally planned, but used the buildroot compiler and targeted my new custom firmware. Everything worked great! I was able to hook up a USB keyboard to the usb host port and play through the first few levels.
+After acquiring root, the next step was to get Doom running. My original plan was to simply cross compile [fbDOOM](https://github.com/maximevince/fbDOOM) for the orignal picture frame firmware and point it at the framebuffer. I ended up having trouble getting everything to work with the archaic build of linux they were using so I built a completely new system image. I built a kernel targeting the system and built a rootfs using buildroot. For the device tree, I mostly copied the tree for the Sinlinx Sin-A33 devboard which has extremely similar hardware to the picture frame's motherboard (I suspect the engineers used this devboard for prototyping). I made some slight changes to the node for the voltage regulator for the display (I was having issues with the display powering off). I ended up having to slightly modify the custom u-boot image to initialize the display as well. After booting into the system I tried booting a graphical environment and running chocolate-doom (a minimalist source port) and it worked pretty well, but I couldn't get input to work properly. In the end I compiled fbDOOM as originally planned, but used the buildroot compiler and targeted my new custom firmware. Everything worked great! I was able to hook up a USB keyboard to the usb host port and play through the first few levels.
 
 ![Doom running on the frame](/doom-picture-frame-images/doom.jpg)
 
