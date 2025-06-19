@@ -39,7 +39,7 @@ This isn't really related to the project I'm working on, but it's pretty cool an
 
 ![SBT-10a Geiger-Muller tube](/tube-images/SBT-10a.jpg)
 
-The operation of these tubes are extremely simple. A very high voltage is applied across the tube. When a particle enters the tube, electricity flows across the tube very briefly. The simplest Geiger-Muller counter (everyone always forgets about Muller!) is a GM tube, a high voltage supply and a speaker. Each time a particle strikes the tube, a click is emitted from the speaker. This is where the characteristic clicking sound that one often associates with Geiger-Muller counters and radiation comes from. The physics behind these tubes is pretty interesting. When the particle enters the tube, it collides with the small amount of gas inside. This ionizes the gas and creates an effect called a townsend avalanche, which allows the flow of a brief pulse electricity.
+The operation of these tubes are extremely simple. A very high voltage is applied across the tube. When a particle enters the tube, electricity flows across the tube very briefly. The simplest Geiger-Muller counter (everyone always forgets about Muller!) is a GM tube, a high voltage supply and a speaker. Each time a particle strikes the tube, a click is emitted from the speaker. This is where the characteristic clicking sound that one often associates with Geiger-Muller counters and radiation comes from. The physics behind these tubes is pretty interesting. When the particle enters the tube, it collides with the small amount of gas inside. This ionizes the gas and creates an effect called a townsend avalanche, which allows the flow of a brief pulse of electricity.
 
 
 ![GM Counter kit](/tube-images/kit.jpg)
