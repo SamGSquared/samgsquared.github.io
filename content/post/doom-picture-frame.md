@@ -1,11 +1,11 @@
 +++
 date = '2025-06-06T00:14:27-04:00'
 draft = false
-title = 'Hacking a Digital Picture Frame for Fun and Doom'
+title = 'Hacking A Digital Picture Frame for Fun and Doom'
 +++
 *Preface: I first started this project before I had the idea for this blog. Many of the photos were taken after the bulk of the project was complete. As a result, you may notice some battle scars on the board that don't line up chronologically.*
 
-A while back I recieved one of these Pix-Star digital picture frames as a gift.
+A while back I received one of these Pix-Star digital picture frames as a gift.
 
 ![Picture of the frame](/doom-picture-frame-images/frame.png)
 
@@ -16,7 +16,7 @@ I stripped the picture frame down to the motherboard and immediately noticed a c
 ![Motherboard Front](/doom-picture-frame-images/mobo_front.jpg)
 ![Motherboard Front](/doom-picture-frame-images/mobo_rear.jpg)
 
-The first thing that jumped out at me was the niceley labeled UART pins. This was an excellent start! I also took note of the SoC, an Allwinner A33. I didn't recognize the flash chip but a web search of the part number showed me that it was an 8GB Samsung eMMC. Because it's BGA, I decided that a chip-off flash dump was off the table unless as an absolute last resort (Reballing eMMC chips is not my idea of fun). I also noted the 4GB Samsung DRAM. I grabbed the datasheets for the chips I recognized and proceeded to wire up my USB Serial adapter.
+The first thing that jumped out at me was the nicely labeled UART pins. This was an excellent start! I also took note of the SoC, an Allwinner A33. I didn't recognize the flash chip but a web search of the part number showed me that it was an 8GB Samsung eMMC. Because it's BGA, I decided that a chip-off flash dump was off the table unless as an absolute last resort (Reballing eMMC chips is not my idea of fun). I also noted the 4GB Samsung DRAM. I grabbed the datasheets for the chips I recognized and proceeded to wire up my USB Serial adapter.
 
 ![Picture of UART pins](/doom-picture-frame-images/uart.jpg)
 
@@ -46,7 +46,7 @@ Wow that's a lot! I made a little bulleted list with ways I could use these comm
 
 #### Approach 1 - Flash dump using md
 
-My first approach was to try and load the file into memory with the `mmc read` command, and then dump it using a series of `md` commands. There's an excellent python library for automating memory operations (among other things) using u-boot called [depthcharge](https://github.com/tetrelsec/depthcharge). It's a great tool to have in your arsenal if you're at all interested in hacking embedded systems. I set everything up and ran an `mmc read` command, unforuntately this is where my luck seemed to run out. The commands would run and report success but the memory would remain unmodified. I'm still not really sure why this happened. But I figured out that the `sunxi_flash` command has similar functionality and actually works. So I started by loading the flash into memory and then setting up depthcharge script to dump that section of memory. 
+My first approach was to try and load the file into memory with the `mmc read` command, and then dump it using a series of `md` commands. There's an excellent python library for automating memory operations (among other things) using u-boot called [depthcharge](https://github.com/tetrelsec/depthcharge). It's a great tool to have in your arsenal if you're at all interested in hacking embedded systems. I set everything up and ran an `mmc read` command, unfortunately this is where my luck seemed to run out. The commands would run and report success but the memory would remain unmodified. I'm still not really sure why this happened. But I figured out that the `sunxi_flash` command has similar functionality and actually works. So I started by loading the flash into memory and then setting up depthcharge script to dump that section of memory. 
 
 Unfortunately these memory dumps are unbelievably slow. Dumping just the 512MB boot partition took roughly 48 hours. And when the dump finished I found that the output was extremely garbled and contained very little useful information. At this point I kind of got tunnel vision and spent *way* too much time trying to dump the flash using this method. I tried changing the location in memory that the partition reads into. I tried shortening the UART leads to avoid interference. I tried various depthcharge tweaks to use different methods for dumping the RAM. But I eventually gave up on this method and put the project away for a while. 
 
@@ -89,7 +89,7 @@ I then ran the `mmc list` command and was happy to see both the eMMC chip and a 
 
 ![root file listing](/doom-picture-frame-images/rootfs.png)
 
-Great stuff. I then used the `ext4load` command to load the `/etc/passwd` into memory. I then wrote the `passwd` file from memory to my sdcard using the `ext4write` command. I powered off the system and transfered the sd card to my laptop. I modified the `passwd` file to allow passwordless login and then transfered the sd card back to the board. Finally, I reversed the process, using `ext4read` on the sd card and `ext4write` on the eMMC. I rebooted the system and attempted to log in to the root account with no password.
+Great stuff. I then used the `ext4load` command to load the `/etc/passwd` into memory. I then wrote the `passwd` file from memory to my sdcard using the `ext4write` command. I powered off the system and transferred the sd card to my laptop. I modified the `passwd` file to allow passwordless login and then transferred the sd card back to the board. Finally, I reversed the process, using `ext4read` on the sd card and `ext4write` on the eMMC. I rebooted the system and attempted to log in to the root account with no password.
 
 ![Successful login](/doom-picture-frame-images/login.png)
 
@@ -97,7 +97,7 @@ Success! I had achieved root on the picture frame.
 
 #### Building a new firmware image and running Doom
 
-After acquiring root, the next step was to get Doom running. My original plan was to simply cross compile [fbDOOM](https://github.com/maximevince/fbDOOM) for the orignal picture frame firmware and point it at the framebuffer. I ended up having trouble getting everything to work with the archaic build of linux they were using so I built a completely new system image. I built a kernel targeting the system and built a rootfs using buildroot. For the device tree, I mostly copied the tree for the Sinlinx Sin-A33 devboard which has extremely similar hardware to the picture frame's motherboard (I suspect the engineers used this devboard for prototyping). I made some slight changes to the node for the voltage regulator for the display (I was having issues with the display powering off). I ended up having to slightly modify the custom u-boot image to initialize the display as well. After booting into the system I tried booting a graphical environment and running chocolate-doom (a minimalist source port) and it worked pretty well, but I couldn't get input to work properly. In the end I compiled fbDOOM as originally planned, but used the buildroot compiler and targeted my new custom firmware. Everything worked great! I was able to hook up a USB keyboard to the usb host port and play through the first few levels.
+After acquiring root, the next step was to get Doom running. My original plan was to simply cross compile [fbDOOM](https://github.com/maximevince/fbDOOM) for the original picture frame firmware and point it at the framebuffer. I ended up having trouble getting everything to work with the archaic build of linux they were using so I built a completely new system image. I built a kernel targeting the system and built a rootfs using buildroot. For the device tree, I mostly copied the tree for the Sinlinx Sin-A33 devboard which has extremely similar hardware to the picture frame's motherboard (I suspect the engineers used this devboard for prototyping). I made some slight changes to the node for the voltage regulator for the display (I was having issues with the display powering off). I ended up having to slightly modify the custom u-boot image to initialize the display as well. After booting into the system I tried booting a graphical environment and running chocolate-doom (a minimalist source port) and it worked pretty well, but I couldn't get input to work properly. In the end I compiled fbDOOM as originally planned, but used the buildroot compiler and targeted my new custom firmware. Everything worked great! I was able to hook up a USB keyboard to the usb host port and play through the first few levels.
 
 ![Doom running on the frame](/doom-picture-frame-images/doom.jpg)
 
